@@ -33,7 +33,7 @@ script.sh
 
 ## 3. Provide an alias
 
-Finally, you can configure an alias for your script. An alias is a name provided to the script. "Launching" the alias is exactly like launching the original script. 
+Finally, you can configure an alias for your script. An alias is a name provided to the script. "Launching" the alias is exactly like launching the original script.
 
 This step is based on your shell environment.
 
@@ -47,6 +47,20 @@ If you are using `zsh` instead, execute this one:
 
 ```sh
 vi ~/.zshrc
+```
+
+## 4. Confirm changes
+
+Confirm previous changes launching this command:
+
+```sh
+source ~/.bash_profile
+```
+
+Or this if you are using `zsh`:
+
+```sh
+source ~/.zshrc
 ```
 
 ### Note
