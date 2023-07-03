@@ -15,8 +15,6 @@ echo "$RESET"
 
 if [ "$1" = "-l" ]; then
     echo "Installed scripts:\n"
-    #cat ~/.zshrc | grep alias
-    #cat ~/.zshrc | grep alias | cut -d' ' -f2 | cut -d'=' -f1
     cat ~/.zshrc | grep alias | cut -d' ' -f2 | cut -d'=' -f1 | sed 's/^/- /'
     exit 0
 fi
@@ -27,6 +25,20 @@ if [ -z "$1" ]; then
 fi
 
 fileName=$1
+
+if [ "$2" = "-u" ]; then
+    echo "$INFO Removing script file called $SCRIPT$fileName$INFO from /usr/local/bin folder...$RESET"
+    rm -f /usr/local/bin/${fileName}.sh
+
+    scriptName=${fileName%.*}
+    echo "$INFO Removing alias for $SCRIPT$fileName$INFO...$RESET"
+    sed -i.bak "/alias $scriptName=$fileName/d" ~/.zshrc
+
+    echo
+    echo "$SUCCESS Script uninstalled!$RESET"
+    echo "$INFO The script $SCRIPT$fileName$INFO has been uninstalled, and the alias has been removed.$RESET"
+    exit 0
+fi
 
 if [ ! -f $(pwd)/$fileName ]
 then
