@@ -34,7 +34,7 @@ echo "$INFO Adding script file called $SCRIPT$fileName$INFO to /usr/local/bin fo
 # Add the script to the Bin folder
 cp $fileName /usr/local/bin
 
-echo "$INFO Changing perissions for $SCRIPT$fileName$INFO...$RESET"
+echo "$INFO Changing permissions for $SCRIPT$fileName$INFO...$RESET"
 
 # Change file permission
 chmod +x /usr/local/bin/$fileName
