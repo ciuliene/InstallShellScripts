@@ -62,8 +62,13 @@ chmod +x /usr/local/bin/$fileName
 
 echo "$INFO Creating alias for $SCRIPT$fileName$INFO...$RESET"
 
-# Adds the alias
-echo "alias $scriptName=$fileName" >> ~/.zshrc
+if grep -q "alias $scriptName=$fileName" ~/.zshrc; then
+    echo "Alias already created."
+else
+    # Adds the alias
+    echo "alias $scriptName=$fileName" >> ~/.zshrc
+fi
+
 
 echo "$INFO Source...$RESET"
 
