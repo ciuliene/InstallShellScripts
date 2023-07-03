@@ -3,7 +3,17 @@ TITLE="\033[36m"
 INFO="\033[37m"
 SUCCESS="\033[32m"
 SCRIPT="\033[32m"
+INSTALL_SCRIPT="\033[35m"
+COMMENT="\033[90m"
 RESET="\033[0m"
+
+usage() {
+    echo "\nOptions:"
+    echo "${INSTALL_SCRIPT}install_script$TITLE  <sh_file_name>$COMMENT       # The name of the sh file to install"
+    echo "${INSTALL_SCRIPT}install_script$TITLE  <script_name> $SUCCESS-u$COMMENT     # The name of the script to uninstall"
+    echo "${INSTALL_SCRIPT}install_script$TITLE  $SUCCESS-l$COMMENT                   # Print the list of all installed scripts"
+    echo "$RESET"
+}
 
 echo "$TITLE"
 echo "  ___ _   _ ____ _____  _    _     _       ____   ____ ____  ___ ____ _____ "
@@ -13,6 +23,11 @@ echo "  | || |\  |___) || |/ ___ \| |___| |___   ___) | |___|  _ < | ||  __/ | |
 echo " |___|_| \_|____/ |_/_/   \_\_____|_____| |____/ \____|_| \_\___|_|    |_|  "
 echo "$RESET"
 
+if [ "$1" = "-h" ]; then
+    usage
+    exit 0
+fi
+
 if [ "$1" = "-l" ]; then
     echo "Installed scripts:\n"
     cat ~/.zshrc | grep alias | cut -d' ' -f2 | cut -d'=' -f1 | sed 's/^/- /'
@@ -21,6 +36,7 @@ fi
 
 if [ -z "$1" ]; then
     echo "$ERROR Missing file name$RESET"
+    usage
     exit -1
 fi
 
@@ -43,6 +59,7 @@ fi
 if [ ! -f $(pwd)/$fileName ]
 then
     echo "$ERROR File not found$RESET"
+    usage
     exit -2
 fi
 
