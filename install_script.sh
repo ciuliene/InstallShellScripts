@@ -52,8 +52,9 @@ source ~/.zshrc
 echo
 echo "$SUCCESS Done!$RESET"
 echo "$INFO You can now launch your script by simply running $SCRIPT$scriptName$INFO. $RESET"
-echo "$INFO Remember to restart the terminal.$RESET"
 
+# Load new shell
+zsh -l
 
 
 
