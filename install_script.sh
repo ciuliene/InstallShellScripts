@@ -5,11 +5,26 @@ SUCCESS="\033[32m"
 SCRIPT="\033[32m"
 RESET="\033[0m"
 
+echo "$TITLE"
+echo "  ___ _   _ ____ _____  _    _     _       ____   ____ ____  ___ ____ _____ "
+echo " |_ _| \ | / ___|_   _|/ \  | |   | |     / ___| / ___|  _ \|_ _|  _ \_   _|"
+echo "  | ||  \| \___ \ | | / _ \ | |   | |     \___ \| |   | |_) || || |_) || |  "
+echo "  | || |\  |___) || |/ ___ \| |___| |___   ___) | |___|  _ < | ||  __/ | |  "
+echo " |___|_| \_|____/ |_/_/   \_\_____|_____| |____/ \____|_| \_\___|_|    |_|  "
+echo "$RESET"
+
+if [ "$1" = "-l" ]; then
+    echo "Installed scripts:\n"
+    #cat ~/.zshrc | grep alias
+    #cat ~/.zshrc | grep alias | cut -d' ' -f2 | cut -d'=' -f1
+    cat ~/.zshrc | grep alias | cut -d' ' -f2 | cut -d'=' -f1 | sed 's/^/- /'
+    exit 0
+fi
+
 if [ -z "$1" ]; then
     echo "$ERROR Missing file name$RESET"
     exit -1
 fi
-
 
 fileName=$1
 
@@ -21,12 +36,6 @@ fi
 
 IFS="." read -ra ADDR <<< "$fileName"
 scriptName=${ADDR[0]} 
-
-echo "$TITLE  ___ _   _ ____ _____  _    _     _       ____   ____ ____  ___ ____ _____ "
-echo "$TITLE |_ _| \ | / ___|_   _|/ \  | |   | |     / ___| / ___|  _ \|_ _|  _ \_   _|"
-echo "$TITLE  | ||  \| \___ \ | | / _ \ | |   | |     \___ \| |   | |_) || || |_) || |  "
-echo "$TITLE  | || |\  |___) || |/ ___ \| |___| |___   ___) | |___|  _ < | ||  __/ | |  "
-echo "$TITLE |___|_| \_|____/ |_/_/   \_\_____|_____| |____/ \____|_| \_\___|_|    |_|  "
                                                                         
 
 echo "$INFO Adding script file called $SCRIPT$fileName$INFO to /usr/local/bin folder...$RESET"
@@ -55,6 +64,3 @@ echo "$INFO You can now launch your script by simply running $SCRIPT$scriptName$
 
 # Load new shell
 zsh -l
-
-
-
