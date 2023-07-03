@@ -1,77 +1,73 @@
-# Install scripts
+# Install Script
 
-This document will guide you to configure shell scripts as global, so you can run them wherever you are.
+This script allows you to install and uninstall shell scripts and manage aliases in your environment.
 
-## 1. Move a script
+## Usage
 
-The first thing to do is to copy or move your script into `/usr/local/bin` with one of these commands:
+Run the script with the following options:
 
-```sh
-cp /path/to/script.sh /usr/local/bin
+- To install a shell script:
 
-# or
-
-mv /path/to/script.sh /usr/local/bin
+```shell
+install_script <sh_file_name>
 ```
 
-## 2. Enable the execute permission
+- To uninstall a script:
 
-Unix-Like systems provide the `chmod` command which is used to change file and folder permission.
-The `+x` parameter is used to add the x permission which is the symbol for the execute permission. The execution permission will give the execution ability to the owner user or group of the file. The + will add provided ability and - minus will remove the provided ability.
-
-Thus enable the script permission running this command:
-
-```sh
-chmod +x /usr/local/bin/script.sh
+```shell
+install_script <script_name> -u
 ```
 
-After this command, you are able to run your script wherever you are, simply calling it:
+- To print the list of all installed scripts:
 
-```sh
-script.sh
+```shell
+install_script -l
 ```
 
-## 3. Provide an alias
+## Options
 
-Finally, you can configure an alias for your script. An alias is a name provided to the script. "Launching" the alias is exactly like launching the original script.
+- `<sh_file_name>`: The name of the sh file to install.
 
-This step is based on your shell environment.
+- `<script_name> -u`: The name of the script to uninstall.
 
-So if you are using `bash`, execute this command:
+- `-l`: Print the list of all installed scripts.
 
-```sh
-vi ~/.bash_profile
+- `-h`: Print tool instructions
+
+## Examples
+
+To install a script called `myscript.sh`:
+
+```shell
+install_script myscript.sh
 ```
 
-If you are using `zsh` instead, execute this one:
+To uninstall a script named `myscript`:
 
-```sh
-vi ~/.zshrc
+```shell
+install_script myscript -u
 ```
 
-## 4. Confirm changes
+To print the list of all installed scripts:
 
-Confirm previous changes launching this command:
-
-```sh
-source ~/.bash_profile
+```shell
+install_script -l
 ```
 
-Or this if you are using `zsh`:
+NOTE: you can install this script by executing this command (move to the directory where the file is located):
 
-```sh
-source ~/.zshrc
+```shell
+sh ./install_script.sh install_script.sh
 ```
 
-### Note
+## Dependencies
 
-- `Option+5` to type `~` (tilde)
-- This guide uses `vi` but you can use your favorite editor.
+This script assumes that you are using the Zsh shell and have a `~/.zshrc` file.
 
-After opening the file, enter this line wherever you want (typically at the end of the file):
+## License
 
-```sh
-alias <alias-name>=<script>
+This script is licensed under the [MIT License](LICENSE).
+
 ```
-
-Where `<alias-name>` is the alias you will use and `<script>` is the name of script, like `script.sh`
+Feel free to customize and modify it according to your needs.
+```
