@@ -1,3 +1,13 @@
+#!/bin/zsh
+
+
+if [ "$1" = "-d" ]; then
+    result_args="${@:2}"
+    echo "DEVELOPMENT MODE IS ON"
+    sh $HOME/Documents/InstallShellScripts/install_script.sh ${@:2}
+    exit 0
+fi
+
 ERROR="\033[31m"
 TITLE="\033[36m"
 INFO="\033[37m"
@@ -12,6 +22,7 @@ usage() {
     echo "${INSTALL_SCRIPT}install_script$TITLE  <sh_file_name>$COMMENT       # The name of the sh file to install"
     echo "${INSTALL_SCRIPT}install_script$TITLE  <script_name> $SUCCESS-u$COMMENT     # The name of the script to uninstall"
     echo "${INSTALL_SCRIPT}install_script$TITLE  $SUCCESS-l$COMMENT                   # Print the list of all installed scripts"
+    echo "${INSTALL_SCRIPT}install_script$TITLE  $SUCCESS-d$COMMENT [arguments]       # Execute the script in Documents folder instead of the installed script"
     echo "$RESET"
 }
 
