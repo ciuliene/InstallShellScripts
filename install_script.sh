@@ -64,7 +64,8 @@ if [ "$2" = "-u" ]; then
     echo
     echo "$SUCCESS Script uninstalled!$RESET"
     echo "$INFO The script $SCRIPT$fileName$INFO has been uninstalled, and the alias has been removed.$RESET"
-    exit 0
+
+    exec $SHELL
 fi
 
 if [ ! -f $(pwd)/$fileName ]
@@ -98,14 +99,8 @@ else
 fi
 
 
-echo "$INFO Source...$RESET"
-
-# Perform the Source command
-source ~/.zshrc
-
 echo
 echo "$SUCCESS Done!$RESET"
 echo "$INFO You can now launch your script by simply running $SCRIPT$scriptName$INFO. $RESET"
 
-# Load new shell
-zsh -l
+exec $SHELL
