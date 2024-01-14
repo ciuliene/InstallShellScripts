@@ -75,9 +75,7 @@ then
     exit -2
 fi
 
-IFS="." read -ra ADDR <<< "$fileName"
-scriptName=${ADDR[0]} 
-                                                                        
+scriptName=$(basename "$fileName" .sh)
 
 echo "$INFO Adding script file called $SCRIPT$fileName$INFO to /usr/local/bin folder...$RESET"
 
